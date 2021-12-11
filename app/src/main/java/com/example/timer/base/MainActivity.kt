@@ -16,6 +16,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts.RequestPermission
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -65,15 +66,7 @@ class MainActivity : AppCompatActivity() {
 
         requestInitDataFromService()
 
-        // Todo: extract method
-        val requestPermissionLauncher = registerForActivityResult(RequestPermission()) { isGranted ->
-            if (!isGranted) {
-                Toast.makeText(
-                    this,
-                    getString(R.string.permission_not_granted_message),
-                    Toast.LENGTH_LONG).show()
-            }
-        }
+        val requestPermissionLauncher = registerPermissionsCallback()
 
         if (ContextCompat.checkSelfPermission(
                 this,
@@ -245,5 +238,15 @@ class MainActivity : AppCompatActivity() {
         intent = Intent(this, TimerService::class.java)
             .putExtra(EXTRA_COMMAND, COMMAND_SEND_DATA)
         startService(intent)
+    }
+
+    private fun registerPermissionsCallback() =
+        registerForActivityResult(RequestPermission()) { isGranted ->
+        if (!isGranted) {
+            Toast.makeText(
+                this,
+                getString(R.string.permission_not_granted_message),
+                Toast.LENGTH_LONG).show()
+        }
     }
 }
