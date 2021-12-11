@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Timer</string>
+
+    <string name="timer_started">STARTED</string>
+    <string name="timer_stopped">STOPPED</string>
+    <string name="timer_paused">PAUSED</string>
+    <string name="timer_resumed">RESUMED</string>
+
+    <string name="zero">00</string>
+    <string name="five">05</string>
+    <string name="leading_zero">0%d</string>
+
+    <string name="colon">:</string>
+
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="resume">Resume</string>
+    <string name="pause">Pause</string>
+
+    <string name="timer_running">Timer is running</string>
+    <string name="time_up">Time\'s up</string>
+    <string name="ok">OK</string>
+
+    <string name="channel_name">Timer</string>
+    <string name="channel_description">Timer related channel</string>
+
+    <string name="permission_not_granted_message">
+        Sounds won\'t work without access to media on your device</string>
+
+    <dimen name="margin_between_numbers">12dp</dimen>
+</resources>

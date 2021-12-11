@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+        <TextView
+            android:id="@+id/timer_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/edit_text_minutes"
+            android:layout_marginBottom="20dp"
+            />
+
+        <EditText
+            android:id="@+id/edit_text_hours"
+            style="@style/TimeUnit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/zero"
+            android:hint="@string/zero"
+            android:autofillHints="no"
+            android:onClick="selectAllText"
+            android:imeOptions="actionNext"
+            android:layout_marginEnd="@dimen/margin_between_numbers"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/edit_text_minutes"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/colon1"
+            style="@style/TimeColon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/colon"
+            app:layout_constraintStart_toEndOf="@id/edit_text_hours"
+            app:layout_constraintEnd_toStartOf="@id/edit_text_minutes"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <EditText
+            android:id="@+id/edit_text_minutes"
+            style="@style/TimeUnit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/zero"
+            android:hint="@string/zero"
+            android:autofillHints="no"
+            android:onClick="selectAllText"
+            android:imeOptions="actionNext"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/colon2"
+            style="@style/TimeColon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/colon"
+            app:layout_constraintStart_toEndOf="@id/edit_text_minutes"
+            app:layout_constraintEnd_toStartOf="@id/edit_text_seconds"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <EditText
+            android:id="@+id/edit_text_seconds"
+            style="@style/TimeUnit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/five"
+            android:hint="@string/zero"
+            android:autofillHints="no"
+            android:onClick="selectAllText"
+            android:imeOptions="actionDone"
+            android:layout_marginStart="@dimen/margin_between_numbers"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/edit_text_minutes"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/stop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/stop"
+            android:onClick="stop"
+            app:layout_constraintTop_toBottomOf="@id/edit_text_minutes"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/resume_or_pause"
+            />
+
+        <Button
+            android:id="@+id/resume_or_pause"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/start"
+            android:onClick="start"
+            app:layout_constraintTop_toBottomOf="@id/edit_text_minutes"
+            app:layout_constraintStart_toEndOf="@id/stop"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
