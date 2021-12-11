@@ -159,7 +159,7 @@ class MainActivity : AppCompatActivity() {
             val channel = NotificationChannel(
                 CHANNEL_ID,
                 getString(R.string.channel_name),
-                NotificationManager.IMPORTANCE_HIGH)
+                NotificationManager.IMPORTANCE_DEFAULT)
 
             channel.description = getString(R.string.channel_description)
 

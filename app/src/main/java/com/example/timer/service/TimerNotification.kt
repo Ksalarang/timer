@@ -1,6 +1,7 @@
 package com.example.timer.service
 
 import android.app.Notification
+import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
@@ -60,15 +61,18 @@ class TimerNotification(private val parentContext: Context) {
             .setCategory(NotificationCompat.CATEGORY_STOPWATCH)
             .setContentIntent(pIntentMainActivity)
             .addAction(actionStop)
+            .setSilent(true)
             .setShowWhen(false)
             .setAutoCancel(true)
     }
 
+    // Todo: build a new notification channel and notification when time's up.
     fun getNotificationWhenFinished(): Notification {
         return notificationBuilder
             .setContentTitle("${parentContext.getString(R.string.time_up)} - ${getTitle()}")
             .setContentText("")
             .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .clearActions()
             .build()
     }
