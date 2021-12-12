@@ -72,6 +72,7 @@ class TimerNotification(private val parentContext: Context) {
             .setContentText("")
             .setSilent(false)
             .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
+            .setVibrate(LongArray(2) { 1000 })
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .clearActions()
             .build()
