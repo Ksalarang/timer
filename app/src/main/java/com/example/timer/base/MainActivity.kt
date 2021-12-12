@@ -11,12 +11,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts.RequestPermission
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -156,15 +154,15 @@ class MainActivity : AppCompatActivity() {
         // Create the NotificationChannel, but only on API 26+ or higher because
         // the NotificationChannel class is new and not in the support library
         if (Utils.isOreoOrAbove()) {
-            val channel = NotificationChannel(
-                CHANNEL_ID,
-                getString(R.string.channel_name),
+            val foregroundChannel = NotificationChannel(
+                FOREGROUND_CHANNEL_ID,
+                getString(R.string.foreground_channel_name),
                 NotificationManager.IMPORTANCE_DEFAULT)
 
-            channel.description = getString(R.string.channel_description)
+            foregroundChannel.description = getString(R.string.foreground_channel_description)
 
             (getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager)
-                .createNotificationChannel(channel)
+                .createNotificationChannel(foregroundChannel)
         }
     }
 

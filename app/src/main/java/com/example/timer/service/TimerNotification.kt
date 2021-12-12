@@ -1,7 +1,6 @@
 package com.example.timer.service
 
 import android.app.Notification
-import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
@@ -53,7 +52,7 @@ class TimerNotification(private val parentContext: Context) {
             pIntentStopService
         ).build()
 
-        return NotificationCompat.Builder(parentContext, CHANNEL_ID)
+        return NotificationCompat.Builder(parentContext, FOREGROUND_CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_launcher_foreground)
             .setContentTitle(getTitle())
             .setContentText(parentContext.getString(R.string.timer_running))
