@@ -65,11 +65,12 @@ class TimerNotification(private val parentContext: Context) {
             .setAutoCancel(true)
     }
 
-    // Todo: build a new notification channel and notification when time's up.
     fun getNotificationWhenFinished(): Notification {
         return notificationBuilder
+            .setChannelId(TIMER_END_CHANNEL_ID)
             .setContentTitle("${parentContext.getString(R.string.time_up)} - ${getTitle()}")
             .setContentText("")
+            .setSilent(false)
             .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .clearActions()
