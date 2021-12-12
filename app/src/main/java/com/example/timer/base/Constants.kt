@@ -1,6 +1,6 @@
 package com.example.timer.base
 
-const val FOREGROUND_CHANNEL_ID = "111"
+const val SERVICE_CHANNEL_ID = "111"
 const val TIMER_END_CHANNEL_ID = "112"
 const val ACTION_TIMER_STATE_CHANGED = "com.example.timer.base.MainActivity.TIMER_STATE_CHANGED"
 

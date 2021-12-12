@@ -154,15 +154,15 @@ class MainActivity : AppCompatActivity() {
         // Create the NotificationChannel, but only on API 26+ or higher because
         // the NotificationChannel class is new and not in the support library
         if (Utils.isOreoOrAbove()) {
-            val foregroundChannel = NotificationChannel(
-                FOREGROUND_CHANNEL_ID,
-                getString(R.string.foreground_channel_name),
+            val serviceChannel = NotificationChannel(
+                SERVICE_CHANNEL_ID,
+                getString(R.string.service_channel_name),
                 NotificationManager.IMPORTANCE_DEFAULT)
 
-            foregroundChannel.description = getString(R.string.foreground_channel_description)
+            serviceChannel.description = getString(R.string.service_channel_description)
 
             (getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager)
-                .createNotificationChannel(foregroundChannel)
+                .createNotificationChannel(serviceChannel)
         }
     }
 

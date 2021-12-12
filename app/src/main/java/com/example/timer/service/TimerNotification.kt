@@ -52,7 +52,7 @@ class TimerNotification(private val parentContext: Context) {
             pIntentStopService
         ).build()
 
-        return NotificationCompat.Builder(parentContext, FOREGROUND_CHANNEL_ID)
+        return NotificationCompat.Builder(parentContext, SERVICE_CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_launcher_foreground)
             .setContentTitle(getTitle())
             .setContentText(parentContext.getString(R.string.timer_running))
