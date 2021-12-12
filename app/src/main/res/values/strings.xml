@@ -23,7 +23,7 @@
 
     <string name="service_channel_name">Timer service</string>
     <string name="service_channel_description">Displays foreground notification when the timer\'s started</string>
-    <string name="timer_end_channel">Time\'s up</string>
+    <string name="timer_end_channel_name">Time\'s up</string>
     <string name="timer_end_channel_description">Shows a notification when time\'s up</string>
 
     <string name="permission_not_granted_message">

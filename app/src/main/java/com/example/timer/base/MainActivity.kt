@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
             editText.setCustomOnFocusChangedListener()
         }
 
-        createNotificationChannel()
+        createNotificationChannels()
 
         tickReceiver = createBroadcastReceiver()
         LocalBroadcastManager.getInstance(this)
@@ -150,7 +150,7 @@ class MainActivity : AppCompatActivity() {
             .putExtra(EXTRA_SECONDS, etSeconds.getInt())
     }
 
-    private fun createNotificationChannel() {
+    private fun createNotificationChannels() {
         // Create the NotificationChannel, but only on API 26+ or higher because
         // the NotificationChannel class is new and not in the support library
         if (Utils.isOreoOrAbove()) {
@@ -161,8 +161,18 @@ class MainActivity : AppCompatActivity() {
 
             serviceChannel.description = getString(R.string.service_channel_description)
 
-            (getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager)
-                .createNotificationChannel(serviceChannel)
+            val timeEndChannel = NotificationChannel(
+                TIMER_END_CHANNEL_ID,
+                getString(R.string.timer_end_channel_name),
+                NotificationManager.IMPORTANCE_HIGH)
+
+            timeEndChannel.description = getString(R.string.timer_end_channel_description)
+
+            val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.apply {
+                createNotificationChannel(serviceChannel)
+                createNotificationChannel(timeEndChannel)
+            }
         }
     }
 
