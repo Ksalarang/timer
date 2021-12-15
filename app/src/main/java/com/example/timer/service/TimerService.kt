@@ -22,11 +22,7 @@ class TimerService : LifecycleService() {
     override fun onCreate() {
         super.onCreate()
         notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-
         localBroadcastManager = LocalBroadcastManager.getInstance(this)
-
-        timerNotification = TimerNotification(this)
-        addObserversToModel()
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -39,22 +35,20 @@ class TimerService : LifecycleService() {
                     val m = getIntExtra(EXTRA_MINUTES, 0)
                     val s = getIntExtra(EXTRA_SECONDS, 0)
 
-                    timerNotification.initializeTimeUnits(h, m, s)
+                    timerNotification = TimerNotification(this@TimerService)
+                        .also { it.initializeTimeUnits(h, m, s) }
 
+                    addObserversToModel()
                     timerModel.startTimer(h, m, s)
 
                     startForeground(NOTIFICATION_ID, timerNotification.getNotification())
                 }
-                COMMAND_PAUSE -> {
-                    timerModel.pauseTimer()
-                }
-                COMMAND_RESUME -> {
-                    timerModel.resumeTimer()
-                }
+                COMMAND_PAUSE -> timerModel.pauseTimer()
+                COMMAND_RESUME -> timerModel.resumeTimer()
                 COMMAND_STOP -> stopSelf()
 
                 COMMAND_SEND_DATA -> {
-                    if (timerModel.timerStarted.value!!) {
+                    if (isTimerStarted()) {
                         val allData = Intent(ACTION_TIMER_STATE_CHANGED)
                             .putExtra(EXTRA_RESULT_CODE, ALL_DATA_RESULT_CODE)
                             .putExtra(EXTRA_SECONDS, timerModel.seconds.value)
@@ -68,10 +62,10 @@ class TimerService : LifecycleService() {
                         stopSelf()
                     }
                 }
-                COMMAND_DISMISS_NOTIFICATION -> notificationManager.cancel(NOTIFICATION_ID)
+                // TODO: why do I need this?
+//                COMMAND_DISMISS_NOTIFICATION -> notificationManager.cancel(NOTIFICATION_ID)
             }
         }
-
         return START_NOT_STICKY
     }
 
@@ -145,8 +139,6 @@ class TimerService : LifecycleService() {
             if (timerIsUp) {
                 notificationManager.notify(NOTIFICATION_ID, timerNotification.getNotificationWhenFinished())
             }
-            // Todo: notification sounds 2 times
-            // Todo: how to always allow floating notification and sound?
         }
     }
 
