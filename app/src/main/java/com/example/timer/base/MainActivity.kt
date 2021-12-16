@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -25,7 +24,7 @@ import com.example.timer.databinding.ActivityMainBinding
 import com.example.timer.service.TimerService
 import com.example.timer.utils.Utils
 
-private const val TIME_UNIT_MAX = 59
+private const val TIME_UNIT_MAX_VALUE = 59
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -107,7 +106,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Make sure that the value of an [EditText] is no more than [TIME_UNIT_MAX].
+     * Make sure that the value of an [EditText] is no more than [TIME_UNIT_MAX_VALUE].
      * If the [EditText] is empty set the value to '00'
      */
     private fun EditText.addAfterTextChangedListener() {
@@ -123,8 +122,8 @@ class MainActivity : AppCompatActivity() {
                     }
                 } else {
                     val n = text.toString().toInt()
-                    if (n > TIME_UNIT_MAX) this.apply {
-                        setText("$TIME_UNIT_MAX")
+                    if (n > TIME_UNIT_MAX_VALUE) this.apply {
+                        setText("$TIME_UNIT_MAX_VALUE")
                         setSelection(length())
                     }
                 }
