@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -65,7 +64,7 @@ class MainActivity : AppCompatActivity() {
         LocalBroadcastManager.getInstance(this)
             .registerReceiver(tickReceiver, IntentFilter(ACTION_TIMER_STATE_CHANGED))
 
-        val duration = Duration(getPrevTimerStateInSeconds())
+        val duration = Duration(getPreference(TIMER_PREV_STATE_SECONDS))
         etHours.update(duration.hours)
         etMinutes.update(duration.minutes)
         etSeconds.update(duration.seconds)
@@ -74,9 +73,8 @@ class MainActivity : AppCompatActivity() {
 
         val requestPermissionLauncher = registerPermissionsCallback()
 
-        if (ContextCompat.checkSelfPermission(
-                this,
-                Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+            == PackageManager.PERMISSION_DENIED) {
             requestPermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
         }
     }
@@ -96,7 +94,7 @@ class MainActivity : AppCompatActivity() {
                 etMinutes.getInt(),
                 etSeconds.getInt()
             )
-            saveTimerStateInSeconds(duration.secondsTotal)
+            savePreference(TIMER_PREV_STATE_SECONDS, duration.secondsTotal)
         } else if (view is Button) {
             if (view.text == getString(R.string.pause)) {
                 startTimerService(COMMAND_PAUSE)
@@ -273,14 +271,14 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun getPrevTimerStateInSeconds(): Int {
-        return this.getPreferences(MODE_PRIVATE).getInt(TIMER_PREV_STATE_SECONDS, 0)
+    private fun getPreference(key: String, defaultValue: Int = 0): Int {
+        return this.getPreferences(MODE_PRIVATE).getInt(key, defaultValue)
     }
 
-    private fun saveTimerStateInSeconds(seconds: Int) {
+    private fun savePreference(key: String, value: Int) {
         this.getPreferences(MODE_PRIVATE)
             .edit()
-            .putInt(TIMER_PREV_STATE_SECONDS, seconds)
+            .putInt(key, value)
             .apply()
     }
 }
