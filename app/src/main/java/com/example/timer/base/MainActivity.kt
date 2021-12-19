@@ -22,10 +22,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.example.timer.R
 import com.example.timer.databinding.ActivityMainBinding
+import com.example.timer.model.Duration
 import com.example.timer.service.TimerService
 import com.example.timer.utils.Utils
 
 private const val TIME_UNIT_MAX_VALUE = 59
+private const val TIMER_PREV_STATE_SECONDS = "timerPreviousStateInSeconds"
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -63,6 +65,11 @@ class MainActivity : AppCompatActivity() {
         LocalBroadcastManager.getInstance(this)
             .registerReceiver(tickReceiver, IntentFilter(ACTION_TIMER_STATE_CHANGED))
 
+        val duration = Duration(getPrevTimerStateInSeconds())
+        etHours.update(duration.hours)
+        etMinutes.update(duration.minutes)
+        etSeconds.update(duration.seconds)
+
         requestInitDataFromService()
 
         val requestPermissionLauncher = registerPermissionsCallback()
@@ -83,6 +90,13 @@ class MainActivity : AppCompatActivity() {
     fun start(view: View) {
         if (!timerStarted) {
             startTimerService(COMMAND_START)
+
+            val duration = Duration(
+                etHours.getInt(),
+                etMinutes.getInt(),
+                etSeconds.getInt()
+            )
+            saveTimerStateInSeconds(duration.secondsTotal)
         } else if (view is Button) {
             if (view.text == getString(R.string.pause)) {
                 startTimerService(COMMAND_PAUSE)
@@ -257,5 +271,16 @@ class MainActivity : AppCompatActivity() {
                 getString(R.string.permission_not_granted_message),
                 Toast.LENGTH_LONG).show()
         }
+    }
+
+    private fun getPrevTimerStateInSeconds(): Int {
+        return this.getPreferences(MODE_PRIVATE).getInt(TIMER_PREV_STATE_SECONDS, 0)
+    }
+
+    private fun saveTimerStateInSeconds(seconds: Int) {
+        this.getPreferences(MODE_PRIVATE)
+            .edit()
+            .putInt(TIMER_PREV_STATE_SECONDS, seconds)
+            .apply()
     }
 }
