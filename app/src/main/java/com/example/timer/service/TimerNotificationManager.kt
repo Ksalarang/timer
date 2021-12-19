@@ -9,7 +9,7 @@ import androidx.core.app.NotificationCompat
 import com.example.timer.base.*
 import com.example.timer.R
 
-class TimerNotification(private val parentContext: Context) {
+class TimerNotificationManager(private val parentContext: Context) {
     var hours = 0
     var minutes = 0
     var seconds = 0

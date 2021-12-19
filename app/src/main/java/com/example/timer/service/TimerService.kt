@@ -1,11 +1,7 @@
 package com.example.timer.service
 
 import android.app.NotificationManager
-import android.content.BroadcastReceiver
-import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
-import android.util.Log
 import androidx.lifecycle.LifecycleService
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.example.timer.base.*
@@ -17,7 +13,7 @@ class TimerService : LifecycleService() {
     private val timerModel = TimerViewModel()
     private lateinit var notificationManager: NotificationManager
     private lateinit var localBroadcastManager: LocalBroadcastManager
-    private lateinit var timerNotification: TimerNotification
+    private lateinit var timerNotificationManager: TimerNotificationManager
 
     override fun onCreate() {
         super.onCreate()
@@ -35,13 +31,13 @@ class TimerService : LifecycleService() {
                     val m = getIntExtra(EXTRA_MINUTES, 0)
                     val s = getIntExtra(EXTRA_SECONDS, 0)
 
-                    timerNotification = TimerNotification(this@TimerService)
+                    timerNotificationManager = TimerNotificationManager(this@TimerService)
                         .also { it.initializeTimeUnits(h, m, s) }
 
                     addObserversToModel()
                     timerModel.startTimer(h, m, s)
 
-                    startForeground(NOTIFICATION_ID, timerNotification.getNotification())
+                    startForeground(NOTIFICATION_ID, timerNotificationManager.getNotification())
                 }
                 COMMAND_PAUSE -> timerModel.pauseTimer()
                 COMMAND_RESUME -> timerModel.resumeTimer()
@@ -82,10 +78,10 @@ class TimerService : LifecycleService() {
 
             localBroadcastManager.sendBroadcast(tickIntent)
 
-            timerNotification.hours = hours
+            timerNotificationManager.hours = hours
 
             if (isTimerStarted()) {
-                notificationManager.notify(NOTIFICATION_ID, timerNotification.getUpdatedNotification())
+                notificationManager.notify(NOTIFICATION_ID, timerNotificationManager.getUpdatedNotification())
             }
         }
 
@@ -96,10 +92,10 @@ class TimerService : LifecycleService() {
 
             localBroadcastManager.sendBroadcast(tickIntent)
 
-            timerNotification.minutes = minutes
+            timerNotificationManager.minutes = minutes
 
             if (isTimerStarted()) {
-                notificationManager.notify(NOTIFICATION_ID, timerNotification.getUpdatedNotification())
+                notificationManager.notify(NOTIFICATION_ID, timerNotificationManager.getUpdatedNotification())
             }
         }
 
@@ -110,10 +106,10 @@ class TimerService : LifecycleService() {
 
             localBroadcastManager.sendBroadcast(tickIntent)
 
-            timerNotification.seconds = seconds
+            timerNotificationManager.seconds = seconds
 
             if (isTimerStarted()) {
-                notificationManager.notify(NOTIFICATION_ID, timerNotification.getUpdatedNotification())
+                notificationManager.notify(NOTIFICATION_ID, timerNotificationManager.getUpdatedNotification())
             }
         }
 
@@ -137,7 +133,7 @@ class TimerService : LifecycleService() {
 
         timerModel.timerIsUp.observe(this) { timerIsUp ->
             if (timerIsUp) {
-                notificationManager.notify(NOTIFICATION_ID, timerNotification.getNotificationWhenFinished())
+                notificationManager.notify(NOTIFICATION_ID, timerNotificationManager.getNotificationWhenFinished())
             }
         }
     }
