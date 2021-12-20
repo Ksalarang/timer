@@ -26,7 +26,7 @@ import com.example.timer.service.TimerService
 import com.example.timer.utils.Utils
 
 private const val TIME_UNIT_MAX_VALUE = 59
-private const val TIMER_PREV_STATE_SECONDS = "timerPreviousStateInSeconds"
+private const val PREF_TIMER_PREV_STATE_SECONDS = "timerPreviousStateInSeconds"
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity() {
         LocalBroadcastManager.getInstance(this)
             .registerReceiver(tickReceiver, IntentFilter(ACTION_TIMER_STATE_CHANGED))
 
-        val duration = Duration(getPreference(TIMER_PREV_STATE_SECONDS))
+        val duration = Duration(getPreference(PREF_TIMER_PREV_STATE_SECONDS))
         etHours.update(duration.hours)
         etMinutes.update(duration.minutes)
         etSeconds.update(duration.seconds)
@@ -94,7 +94,7 @@ class MainActivity : AppCompatActivity() {
                 etMinutes.getInt(),
                 etSeconds.getInt()
             )
-            savePreference(TIMER_PREV_STATE_SECONDS, duration.secondsTotal)
+            savePreference(PREF_TIMER_PREV_STATE_SECONDS, duration.secondsTotal)
         } else if (view is Button) {
             if (view.text == getString(R.string.pause)) {
                 startTimerService(COMMAND_PAUSE)
