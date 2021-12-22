@@ -107,6 +107,5 @@
             app:layout_constraintStart_toEndOf="@id/stop"
             app:layout_constraintEnd_toEndOf="parent"
             />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
