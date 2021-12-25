@@ -10,14 +10,14 @@
         <item name="colorSecondaryVariant">@color/green_700A_dark</item>
         <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorSurface</item>
         <!-- Customize your theme here. -->
         <item name="android:colorBackground">@color/white</item>
     </style>
 
     <style name="TimeUnit">
         <item name="android:inputType">number</item>
-        <item name="android:textSize">90sp</item>
+        <item name="android:textSize">80sp</item>
         <item name="android:maxLength">2</item>
         <item name="android:selectAllOnFocus">true</item>
         <item name="android:textColor">?attr/colorPrimary</item>
