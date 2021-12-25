@@ -8,17 +8,6 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
-        <TextView
-            android:id="@+id/timer_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/edit_text_minutes"
-            android:layout_marginBottom="20dp"
-            />
-
         <EditText
             android:id="@+id/edit_text_hours"
             style="@style/TimeUnit"
