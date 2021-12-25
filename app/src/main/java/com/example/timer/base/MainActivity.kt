@@ -24,6 +24,7 @@ import com.example.timer.databinding.ActivityMainBinding
 import com.example.timer.model.Duration
 import com.example.timer.service.TimerService
 import com.example.timer.utils.Utils
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 private const val TIME_UNIT_MAX_VALUE = 59
 private const val PREF_TIMER_PREV_STATE_SECONDS = "timerPreviousStateInSeconds"
@@ -85,27 +86,24 @@ class MainActivity : AppCompatActivity() {
             .unregisterReceiver(tickReceiver)
     }
 
-    fun start(view: View) {
+    fun onTimerStart(view: View) {
         if (!timerStarted) {
             startTimerService(COMMAND_START)
 
-            val duration = Duration(
-                etHours.getInt(),
-                etMinutes.getInt(),
-                etSeconds.getInt()
-            )
+            val duration = Duration(etHours.getInt(), etMinutes.getInt(), etSeconds.getInt())
             savePreference(PREF_TIMER_PREV_STATE_SECONDS, duration.secondsTotal)
-        } else if (view is Button) {
-            if (view.text == getString(R.string.pause)) {
-                startTimerService(COMMAND_PAUSE)
-            } else {
-                startTimerService(COMMAND_RESUME)
-            }
+
+            binding.floatingButtonStop.visibility = Button.VISIBLE
+
+        } else if (view.tag.toString() == getString(R.string.pause)) {
+            startTimerService(COMMAND_PAUSE)
+        } else {
+            startTimerService(COMMAND_RESUME)
         }
         Utils.hideKeyboard(this, view)
     }
 
-    fun stop(@Suppress(SUPPRESS_UNUSED_PARAMETER)view: View) { stopService(getTimerServiceIntent(COMMAND_STOP)) }
+    fun onTimerStop(@Suppress(SUPPRESS_UNUSED_PARAMETER)view: View) { stopService(getTimerServiceIntent(COMMAND_STOP)) }
 
     fun selectAllText(view: View) { if (view is EditText) view.selectAll() }
 
@@ -224,23 +222,30 @@ class MainActivity : AppCompatActivity() {
 
     private fun onTimerStarted(started: Boolean) {
         if (started) {
-            binding.timerLabel.text = getString(R.string.timer_started)
             etTime.forEach { editText -> editText.setEditable(false) }
         } else {
-            binding.timerLabel.text = getString(R.string.timer_stopped)
             etTime.forEach { editText -> editText.setEditable(true) }
-            binding.resumeOrPause.text = getString(R.string.start)
+            binding.apply {
+//                resumeOrPause.text = getString(R.string.start)
+                floatingButtonStop.visibility = Button.INVISIBLE
+                floatingButtonStart.setImageResource(R.drawable.icon_resume_48p)
+                floatingButtonStart.tag = (this@MainActivity.getString(R.string.resume))
+            }
         }
         timerStarted = started
     }
 
     private fun onTimerResumed(resumed: Boolean) {
         if (resumed) {
-            binding.resumeOrPause.text = getString(R.string.pause)
-            binding.timerLabel.text = getString(R.string.timer_resumed)
+            binding.apply {
+                floatingButtonStart.setImageResource(R.drawable.icon_pause_48p)
+                floatingButtonStart.tag = (this@MainActivity.getString(R.string.pause))
+            }
         } else if (timerStarted) {
-            binding.resumeOrPause.text = getString(R.string.resume)
-            binding.timerLabel.text = getString(R.string.timer_paused)
+            binding.apply {
+                floatingButtonStart.setImageResource(R.drawable.icon_resume_48p)
+                floatingButtonStart.tag = (this@MainActivity.getString(R.string.resume))
+            }
         }
         timerResumed = resumed
     }

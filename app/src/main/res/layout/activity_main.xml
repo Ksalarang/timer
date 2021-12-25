@@ -91,7 +91,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/stop"
-            android:onClick="stop"
+            android:onClick="onTimerStop"
             app:layout_constraintTop_toBottomOf="@id/edit_text_minutes"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/resume_or_pause"
@@ -102,10 +102,39 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/start"
-            android:onClick="start"
+            android:onClick="onTimerStart"
             app:layout_constraintTop_toBottomOf="@id/edit_text_minutes"
             app:layout_constraintStart_toEndOf="@id/stop"
             app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floating_button_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_resume_48p"
+            android:tint="@color/design_default_color_secondary"
+            android:onClick="onTimerStart"
+            android:contentDescription="@string/resume"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="@dimen/margin_bottom_floating_button"
+            />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floating_button_stop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_stop_48p"
+            android:tint="@color/design_default_color_secondary"
+            android:onClick="onTimerStop"
+            android:contentDescription="@string/stop"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/floating_button_start"
+            android:layout_marginBottom="@dimen/margin_bottom_floating_button"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

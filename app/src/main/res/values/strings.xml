@@ -30,4 +30,5 @@
         Sounds won\'t work without access to media on your device</string>
 
     <dimen name="margin_between_numbers">12dp</dimen>
+    <dimen name="margin_bottom_floating_button">10dp</dimen>
 </resources>

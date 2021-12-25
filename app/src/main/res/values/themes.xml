@@ -8,9 +8,9 @@
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/green_200A</item>
         <item name="colorSecondaryVariant">@color/green_200A_dark</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
         <item name="android:textColor">@color/black</item>
     </style>
