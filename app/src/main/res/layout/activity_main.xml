@@ -86,28 +86,6 @@
             app:layout_constraintStart_toEndOf="@id/edit_text_minutes"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/stop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/stop"
-            android:onClick="onTimerStop"
-            app:layout_constraintTop_toBottomOf="@id/edit_text_minutes"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/resume_or_pause"
-            />
-
-        <Button
-            android:id="@+id/resume_or_pause"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/start"
-            android:onClick="onTimerStart"
-            app:layout_constraintTop_toBottomOf="@id/edit_text_minutes"
-            app:layout_constraintStart_toEndOf="@id/stop"
-            app:layout_constraintEnd_toEndOf="parent"
-            />
-
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/floating_button_start"
             android:layout_width="wrap_content"
