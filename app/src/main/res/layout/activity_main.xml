@@ -10,7 +10,7 @@
 
         <EditText
             android:id="@+id/edit_text_hours"
-            style="@style/TimeUnit"
+            style="@style/Theme.Timer.TimeUnit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/zero"
@@ -25,7 +25,7 @@
 
         <TextView
             android:id="@+id/colon1"
-            style="@style/TimeColon"
+            style="@style/Theme.Timer.TimeColon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/colon"
@@ -36,7 +36,7 @@
 
         <EditText
             android:id="@+id/edit_text_minutes"
-            style="@style/TimeUnit"
+            style="@style/Theme.Timer.TimeUnit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/zero"
@@ -51,7 +51,7 @@
 
         <TextView
             android:id="@+id/colon2"
-            style="@style/TimeColon"
+            style="@style/Theme.Timer.TimeColon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/colon"
@@ -62,7 +62,7 @@
 
         <EditText
             android:id="@+id/edit_text_seconds"
-            style="@style/TimeUnit"
+            style="@style/Theme.Timer.TimeUnit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/five"
@@ -77,31 +77,31 @@
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/floating_button_start"
+            style="@style/Theme.Timer.FloatingActionButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/icon_resume_48p"
-            android:tint="@color/design_default_color_secondary"
+            android:tint="?attr/colorSecondary"
             android:onClick="onTimerStart"
-            android:contentDescription="@string/resume"
+            android:contentDescription="@string/start"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="@dimen/margin_bottom_floating_button"
             />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/floating_button_stop"
+            style="@style/Theme.Timer.FloatingActionButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/icon_stop_48p"
-            android:tint="@color/design_default_color_secondary"
+            android:tint="?attr/colorSecondary"
             android:onClick="onTimerStop"
             android:contentDescription="@string/stop"
             android:visibility="invisible"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@id/floating_button_start"
-            android:layout_marginBottom="@dimen/margin_bottom_floating_button"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

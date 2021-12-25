@@ -14,7 +14,7 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="TimeUnit">
+    <style name="Theme.Timer.TimeUnit">
         <item name="android:inputType">number</item>
         <item name="android:textSize">80sp</item>
         <item name="android:maxLength">2</item>
@@ -24,7 +24,12 @@
         <item name="android:cursorVisible">false</item>
     </style>
 
-    <style name="TimeColon" parent="TimeUnit">
+    <style name="Theme.Timer.TimeColon" parent="Theme.Timer.TimeUnit">
         <item name="android:paddingBottom">10dp</item>
+    </style>
+
+    <style name="Theme.Timer.FloatingActionButton" parent="Widget.Design.FloatingActionButton">
+        <item name="fabCustomSize">64dp</item>
+        <item name="android:layout_marginBottom">12dp</item>
     </style>
 </resources>
