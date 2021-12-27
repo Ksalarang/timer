@@ -24,7 +24,6 @@ import com.example.timer.databinding.ActivityMainBinding
 import com.example.timer.model.Duration
 import com.example.timer.service.TimerService
 import com.example.timer.utils.Utils
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 private const val TIME_UNIT_MAX_VALUE = 59
 private const val PREF_TIMER_PREV_STATE_SECONDS = "timerPreviousStateInSeconds"
@@ -222,11 +221,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun onTimerStarted(started: Boolean) {
         if (started) {
-            etTime.forEach { editText -> editText.setEditable(false) }
+            etTime.forEach {
+                editText -> editText.setEditable(false)
+                binding.floatingButtonStop.visibility = Button.VISIBLE
+            }
         } else {
             etTime.forEach { editText -> editText.setEditable(true) }
             binding.apply {
-//                resumeOrPause.text = getString(R.string.start)
                 floatingButtonStop.visibility = Button.INVISIBLE
                 floatingButtonStart.setImageResource(R.drawable.icon_resume_48p)
                 floatingButtonStart.tag = (this@MainActivity.getString(R.string.resume))
