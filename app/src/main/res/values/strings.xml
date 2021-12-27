@@ -1,15 +1,9 @@
 <resources>
     <string name="app_name">Timer</string>
 
-    <string name="timer_started">STARTED</string>
-    <string name="timer_stopped">STOPPED</string>
-    <string name="timer_paused">PAUSED</string>
-    <string name="timer_resumed">RESUMED</string>
-
     <string name="zero">00</string>
     <string name="five">05</string>
     <string name="leading_zero">0%d</string>
-
     <string name="colon">:</string>
 
     <string name="start">Start</string>
@@ -19,16 +13,15 @@
 
     <string name="timer_running">Timer is running</string>
     <string name="time_up">Time\'s up</string>
-    <string name="ok">OK</string>
 
     <string name="service_channel_name">Timer service</string>
     <string name="service_channel_description">Displays foreground notification when the timer\'s started</string>
     <string name="timer_end_channel_name">Time\'s up</string>
     <string name="timer_end_channel_description">Shows a notification when time\'s up</string>
 
-    <string name="permission_not_granted_message">
-        Sounds won\'t work without access to media on your device</string>
+    <string name="permission_not_granted_message">Sounds won\'t work without access to media on your device</string>
 
+    <!-- Dimens -->
     <dimen name="margin_between_numbers">12dp</dimen>
     <dimen name="margin_bottom_floating_button">10dp</dimen>
 </resources>
