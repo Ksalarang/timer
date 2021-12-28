@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Timer</string>
+    <string name="start">Запустить</string>
+    <string name="stop">Остановить</string>
+    <string name="resume">Возобновить</string>
+    <string name="pause">Приостановить</string>
+    <string name="timer_running">Таймер запущен</string>
+    <string name="time_up">Таймер завершён</string>
+    <string name="service_channel_name">Служба таймера</string>
+    <string name="service_channel_description">Показывает постоянное уведомление при запущенном таймере</string>
+    <string name="timer_end_channel_name">Время вышло</string>
+    <string name="timer_end_channel_description">Показывает уведомление при завершении таймера</string>
+    <string name="permission_not_granted_message">Звуки не будут работать без доступа к медиа-файлам на вашем устрйостве</string>
+</resources>
