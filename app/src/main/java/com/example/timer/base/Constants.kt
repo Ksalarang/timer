@@ -27,4 +27,7 @@ const val ALL_DATA_RESULT_CODE = 600
 
 const val SUPPRESS_UNUSED_PARAMETER = "UNUSED_PARAMETER"
 
+const val LOCALE_EN = "en"
+const val LOCALE_RU = "ru"
+
 const val TAG = "myTag"
