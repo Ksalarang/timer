@@ -284,11 +284,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getPreference(key: String, defaultValue: Int = 0): Int {
-        return this.getPreferences(MODE_PRIVATE).getInt(key, defaultValue)
+        return getPreferences(MODE_PRIVATE).getInt(key, defaultValue)
     }
 
     private fun savePreference(key: String, value: Int) {
-        this.getPreferences(MODE_PRIVATE)
+        getPreferences(MODE_PRIVATE)
             .edit()
             .putInt(key, value)
             .apply()
