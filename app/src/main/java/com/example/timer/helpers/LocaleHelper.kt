@@ -1,8 +1,9 @@
-package com.example.timer.base
+package com.example.timer.helpers
 
 import android.annotation.TargetApi
 import android.content.Context
 import android.os.Build
+import com.example.timer.base.SUPPRESS_DEPRECATION
 import com.example.timer.utils.Utils
 import java.util.*
 
