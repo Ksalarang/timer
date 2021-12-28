@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Timer</string>
 
+    <string name="locale_en">EN</string>
+    <string name="locale_ru">RU</string>
+
     <string name="start">Start</string>
     <string name="stop">Stop</string>
     <string name="resume">Resume</string>

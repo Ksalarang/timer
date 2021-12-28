@@ -1,6 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Timer</string>
+
+    <string name="locale_en">АНГ</string>
+    <string name="locale_ru">РУС</string>
 
     <string name="start">Запустить</string>
     <string name="stop">Остановить</string>
