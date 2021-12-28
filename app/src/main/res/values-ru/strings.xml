@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Timer</string>
+    <string name="app_name">Таймер</string>
 
     <string name="locale_en">АНГ</string>
     <string name="locale_ru">РУС</string>
