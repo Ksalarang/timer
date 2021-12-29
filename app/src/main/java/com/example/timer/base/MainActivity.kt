@@ -83,11 +83,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.changelanguage, menu)
-        return true
-    }
-
     override fun onDestroy() {
         super.onDestroy()
         LocalBroadcastManager.getInstance(this)
