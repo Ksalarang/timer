@@ -12,6 +12,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -22,6 +23,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.example.timer.R
 import com.example.timer.databinding.ActivityMainBinding
+import com.example.timer.helpers.LocaleHelper
 import com.example.timer.model.Duration
 import com.example.timer.service.TimerService
 import com.example.timer.utils.Utils
@@ -112,6 +114,19 @@ class MainActivity : AppCompatActivity() {
     fun onTimerStop(@Suppress(SUPPRESS_UNUSED_PARAMETER)view: View) { stopService(getTimerServiceIntent(COMMAND_STOP)) }
 
     fun selectAllText(view: View) { if (view is EditText) view.selectAll() }
+
+    fun onLanguageIconClicked(menuItem: MenuItem) {
+        when(menuItem.title) {
+            getString(R.string.locale_en) -> {
+                LocaleHelper.setLocale(this, LOCALE_RU)
+                menuItem.title = getString(R.string.locale_ru)
+            }
+            getString(R.string.locale_ru) -> {
+                LocaleHelper.setLocale(this, LOCALE_EN)
+                menuItem.title = getString(R.string.locale_en)
+            }
+        }
+    }
 
     private fun startTimerService(command: String) {
         val intent = getTimerServiceIntent(command)
