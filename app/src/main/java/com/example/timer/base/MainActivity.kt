@@ -65,7 +65,6 @@ class MainActivity : AppCompatActivity() {
         LocalBroadcastManager.getInstance(this)
             .registerReceiver(tickReceiver, IntentFilter(ACTION_TIMER_STATE_CHANGED))
 
-//        val duration = Duration(getPreference(PREF_TIMER_PREV_STATE_SECONDS))
         val secondsTotal = PreferencesHelper.getIntPreference(this, PREF_TIMER_PREV_STATE_SECONDS)
         val duration  = Duration(secondsTotal)
         etHours.update(duration.hours)
@@ -93,7 +92,6 @@ class MainActivity : AppCompatActivity() {
             startTimerService(COMMAND_START)
 
             val duration = Duration(etHours.getInt(), etMinutes.getInt(), etSeconds.getInt())
-//            savePreference(PREF_TIMER_PREV_STATE_SECONDS, duration.secondsTotal)
             PreferencesHelper.saveIntPreference(this, PREF_TIMER_PREV_STATE_SECONDS, duration.secondsTotal)
 
             binding.floatingButtonStop.visibility = Button.VISIBLE
@@ -279,16 +277,5 @@ class MainActivity : AppCompatActivity() {
                 getString(R.string.permission_not_granted_message),
                 Toast.LENGTH_LONG).show()
         }
-    }
-
-    private fun getPreference(key: String, defaultValue: Int = 0): Int {
-        return getPreferences(MODE_PRIVATE).getInt(key, defaultValue)
-    }
-
-    private fun savePreference(key: String, value: Int) {
-        getPreferences(MODE_PRIVATE)
-            .edit()
-            .putInt(key, value)
-            .apply()
     }
 }
