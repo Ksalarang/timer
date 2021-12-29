@@ -7,8 +7,6 @@ import com.example.timer.base.SUPPRESS_DEPRECATION
 import com.example.timer.utils.Utils
 import java.util.*
 
-private const val PREF_SELECTED_LANGUAGE = "selectedLanguage"
-
 class LocaleHelper {
     companion object {
         fun setLocale(context: Context, language: String): Context {

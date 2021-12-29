@@ -28,6 +28,7 @@ import com.example.timer.utils.Utils
 
 private const val TIME_UNIT_MAX_VALUE = 59
 private const val PREF_TIMER_PREV_STATE_SECONDS = "timerPreviousStateInSeconds"
+private const val PREF_SELECTED_LANGUAGE = "selectedLanguage"
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
