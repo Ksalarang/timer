@@ -8,15 +8,15 @@ class PreferencesHelper {
             return activity.getPreferences(AppCompatActivity.MODE_PRIVATE).getInt(key, defaultValue)
         }
 
-        fun getStringPreference(activity: AppCompatActivity, key: String, defaultValue: String? = null): String? {
-            return activity.getPreferences(AppCompatActivity.MODE_PRIVATE).getString(key, defaultValue)
-        }
-
         fun saveIntPreference(activity: AppCompatActivity, key: String, value: Int) {
             activity.getPreferences(AppCompatActivity.MODE_PRIVATE)
                 .edit()
                 .putInt(key, value)
                 .apply()
+        }
+
+        fun getStringPreference(activity: AppCompatActivity, key: String, defaultValue: String? = null): String? {
+            return activity.getPreferences(AppCompatActivity.MODE_PRIVATE).getString(key, defaultValue)
         }
 
         fun saveStringPreference(activity: AppCompatActivity, key: String, value: String) {
