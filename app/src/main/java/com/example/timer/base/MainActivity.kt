@@ -30,7 +30,6 @@ import com.example.timer.utils.Utils
 
 private const val TIME_UNIT_MAX_VALUE = 59
 private const val PREF_TIMER_PREV_STATE_SECONDS = "timerPreviousStateInSeconds"
-private const val PREF_SELECTED_LANGUAGE = "selectedLanguage"
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -109,19 +108,6 @@ class MainActivity : AppCompatActivity() {
     fun onTimerStop(@Suppress(SUPPRESS_UNUSED_PARAMETER)view: View) { stopService(getTimerServiceIntent(COMMAND_STOP)) }
 
     fun selectAllText(view: View) { if (view is EditText) view.selectAll() }
-
-    fun onLanguageIconClicked(menuItem: MenuItem) {
-        when(menuItem.title) {
-            getString(R.string.locale_en) -> {
-                LocaleHelper.setLocale(this, LOCALE_RU)
-                menuItem.title = getString(R.string.locale_ru)
-            }
-            getString(R.string.locale_ru) -> {
-                LocaleHelper.setLocale(this, LOCALE_EN)
-                menuItem.title = getString(R.string.locale_en)
-            }
-        }
-    }
 
     private fun startTimerService(command: String) {
         val intent = getTimerServiceIntent(command)
