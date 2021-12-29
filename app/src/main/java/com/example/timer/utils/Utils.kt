@@ -10,7 +10,6 @@ class Utils {
     companion object {
         fun isOreoOrAbove() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O
         fun isNougatOrAbove() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.N
-        fun isMarshmallowOrAbove() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
 
         fun hideKeyboard(context: Context, view: View) {
             (context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager)
