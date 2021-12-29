@@ -21,6 +21,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.example.timer.R
 import com.example.timer.databinding.ActivityMainBinding
+import com.example.timer.helpers.PreferencesHelper
 import com.example.timer.model.Duration
 import com.example.timer.service.TimerService
 import com.example.timer.utils.Utils
@@ -64,7 +65,9 @@ class MainActivity : AppCompatActivity() {
         LocalBroadcastManager.getInstance(this)
             .registerReceiver(tickReceiver, IntentFilter(ACTION_TIMER_STATE_CHANGED))
 
-        val duration = Duration(getPreference(PREF_TIMER_PREV_STATE_SECONDS))
+//        val duration = Duration(getPreference(PREF_TIMER_PREV_STATE_SECONDS))
+        val secondsTotal = PreferencesHelper.getIntPreference(this, PREF_TIMER_PREV_STATE_SECONDS)
+        val duration  = Duration(secondsTotal)
         etHours.update(duration.hours)
         etMinutes.update(duration.minutes)
         etSeconds.update(duration.seconds)
@@ -90,7 +93,8 @@ class MainActivity : AppCompatActivity() {
             startTimerService(COMMAND_START)
 
             val duration = Duration(etHours.getInt(), etMinutes.getInt(), etSeconds.getInt())
-            savePreference(PREF_TIMER_PREV_STATE_SECONDS, duration.secondsTotal)
+//            savePreference(PREF_TIMER_PREV_STATE_SECONDS, duration.secondsTotal)
+            PreferencesHelper.saveIntPreference(this, PREF_TIMER_PREV_STATE_SECONDS, duration.secondsTotal)
 
             binding.floatingButtonStop.visibility = Button.VISIBLE
 
