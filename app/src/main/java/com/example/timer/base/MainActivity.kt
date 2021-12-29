@@ -11,8 +11,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -23,7 +21,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.example.timer.R
 import com.example.timer.databinding.ActivityMainBinding
-import com.example.timer.helpers.LocaleHelper
 import com.example.timer.model.Duration
 import com.example.timer.service.TimerService
 import com.example.timer.utils.Utils
